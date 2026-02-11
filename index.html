@@ -1,0 +1,2527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Plus One | Teacher Training Syllabus</title>
+    <meta name="description" content="From Objectives to Impact: Communicative Language Teaching in Practice. A practical, module-based course for teachers.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=League+Spartan:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        :root {
+            --bg-primary: #F6F2EA;
+            --bg-dark: #111111;
+            --accent: #FF4D2E;
+            --accent-light: #FF7A5C;
+            --accent-dark: #E63A1C;
+            --text-primary: #111111;
+            --text-secondary: #6E6A63;
+            --text-light: #F6F2EA;
+            --text-muted: #B9B3AA;
+            --yellow: #FFB800;
+            --orange: #FF8C00;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* Grain Overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.04;
+            mix-blend-mode: multiply;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 4vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: all 0.4s ease;
+        }
+        
+        .nav.scrolled {
+            background: rgba(246, 242, 234, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 1rem 4vw;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+        }
+        
+        .nav.dark {
+            background: rgba(17, 17, 17, 0.92);
+        }
+        
+        .logo {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        
+        .nav.dark .logo {
+            color: var(--text-light);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--text-primary);
+            text-decoration: none;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        
+        .nav.dark .nav-links a {
+            color: var(--text-light);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-cta {
+            background: var(--accent);
+            color: white !important;
+            padding: 0.75rem 1.5rem;
+            border-radius: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-cta::after {
+            display: none !important;
+        }
+        
+        .nav-cta:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        .mobile-menu-btn span {
+            width: 24px;
+            height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        
+        .nav.dark .mobile-menu-btn span {
+            background: var(--text-light);
+        }
+        
+        /* Section Base */
+        .section {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .section-pinned {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        /* Typography */
+        .eyebrow {
+            font-family: 'Space Mono', monospace;
+            font-size: clamp(0.65rem, 0.9vw, 0.8rem);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .eyebrow.dark {
+            color: var(--yellow);
+        }
+        
+        h1 {
+            font-family: 'League Spartan', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-weight: 800;
+            line-height: 0.95;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+        
+        h2 {
+            font-family: 'League Spartan', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-family: 'League Spartan', sans-serif;
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        h4 {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .text-light h1, .text-light h2, .text-light h3, .text-light h4 {
+            color: var(--text-light);
+        }
+        
+        p {
+            font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+            line-height: 1.7;
+            color: var(--text-secondary);
+        }
+        
+        .text-light p {
+            color: var(--text-muted);
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 77, 46, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid var(--text-primary);
+        }
+        
+        .text-light .btn-secondary {
+            color: var(--text-light);
+            border-color: var(--text-light);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+        
+        .text-light .btn-secondary:hover {
+            background: var(--text-light);
+            color: var(--bg-dark);
+        }
+        
+        .link-arrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--accent);
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+        
+        .link-arrow:hover {
+            gap: 0.75rem;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: var(--bg-primary);
+            position: relative;
+        }
+        
+        .hero-content {
+            position: absolute;
+            left: 8vw;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 40vw;
+            z-index: 10;
+        }
+        
+        .hero-subtitle {
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+        
+        .hero-ctas {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .hero-image-container {
+            position: absolute;
+            right: 6vw;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42vw;
+            height: 75vh;
+        }
+        
+        .hero-accent {
+            position: absolute;
+            right: 10vw;
+            top: 52%;
+            transform: translateY(-50%) rotate(-2deg);
+            width: 34vw;
+            height: 60vh;
+            background: var(--accent);
+            border-radius: 22px;
+            z-index: 1;
+        }
+        
+        .hero-image {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            border-radius: 22px;
+            overflow: hidden;
+            z-index: 2;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+        }
+        
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.7) contrast(1.1);
+        }
+        
+        .instructor-chip {
+            position: absolute;
+            left: 8vw;
+            bottom: 8vh;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 1.25rem;
+            background: white;
+            border-radius: 999px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            z-index: 10;
+        }
+        
+        .instructor-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--orange));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .instructor-text {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+        }
+        
+        .instructor-name {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        
+        /* Module Sections */
+        .module {
+            position: relative;
+        }
+        
+        .module-paper {
+            background: var(--bg-primary);
+        }
+        
+        .module-dark {
+            background: var(--bg-dark);
+        }
+        
+        .module-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4vw;
+            align-items: center;
+            padding: 0 8vw;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .module-layout.reverse {
+            direction: rtl;
+        }
+        
+        .module-layout.reverse > * {
+            direction: ltr;
+        }
+        
+        .module-visual {
+            position: relative;
+            height: 70vh;
+        }
+        
+        .module-accent {
+            position: absolute;
+            width: 80%;
+            height: 75%;
+            background: var(--accent);
+            border-radius: 22px;
+            z-index: 1;
+        }
+        
+        .module-layout.reverse .module-accent {
+            right: 0;
+            top: 10%;
+            transform: rotate(-2deg);
+        }
+        
+        .module-layout:not(.reverse) .module-accent {
+            left: 10%;
+            top: 12%;
+            transform: rotate(2deg);
+        }
+        
+        .module-image {
+            position: relative;
+            width: 85%;
+            height: 85%;
+            border-radius: 22px;
+            overflow: hidden;
+            z-index: 2;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+        }
+        
+        .module-layout.reverse .module-image {
+            margin-left: auto;
+        }
+        
+        .module-layout:not(.reverse) .module-image {
+            margin-right: auto;
+        }
+        
+        .module-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: saturate(0.65) contrast(1.15);
+        }
+        
+        .module-content {
+            max-width: 90%;
+        }
+        
+        .module-title {
+            margin-bottom: 1.5rem;
+        }
+        
+        .module-description {
+            margin-bottom: 2rem;
+        }
+        
+        /* Schedule Section */
+        .schedule {
+            background: var(--bg-primary);
+            padding: 10vh 8vw;
+        }
+        
+        .schedule-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+        
+        .schedule-header h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .schedule-header p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent), var(--orange), var(--yellow));
+            transform: translateX(-50%);
+        }
+        
+        .week-card {
+            position: relative;
+            width: calc(50% - 40px);
+            padding: 1.75rem;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+        }
+        
+        .week-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .week-card:nth-child(odd) {
+            margin-left: auto;
+            margin-right: 0;
+        }
+        
+        .week-card:nth-child(even) {
+            margin-left: 0;
+            margin-right: auto;
+        }
+        
+        .week-card::before {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            top: 50%;
+            transform: translateY(-50%);
+            border: 3px solid var(--bg-primary);
+        }
+        
+        .week-card:nth-child(odd)::before {
+            left: -48px;
+        }
+        
+        .week-card:nth-child(even)::before {
+            right: -48px;
+        }
+        
+        .week-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+        
+        .week-title {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+        
+        /* Assessment Section */
+        .assessment {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1a1a 100%);
+            padding: 10vh 8vw;
+            color: var(--text-light);
+        }
+        
+        .assessment-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .assessment-header h2 {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+        
+        .assessment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .assessment-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .assessment-card:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-4px);
+        }
+        
+        .assessment-weight {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--accent), var(--orange));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .assessment-name {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+        
+        .assessment-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        /* Glossary Section */
+        .glossary {
+            background: var(--bg-primary);
+            padding: 10vh 8vw;
+        }
+        
+        .glossary-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .glossary-header h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .glossary-header p {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .glossary-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .glossary-module {
+            margin-bottom: 1rem;
+            border-radius: 18px;
+            overflow: hidden;
+            background: white;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        
+        .glossary-module-header {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(135deg, var(--accent), var(--orange));
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .glossary-module-header:hover {
+            filter: brightness(1.05);
+        }
+        
+        .glossary-module-header h3 {
+            color: white;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+        
+        .glossary-module-header .module-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.8);
+            margin-right: 1rem;
+        }
+        
+        .glossary-toggle {
+            width: 24px;
+            height: 24px;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .glossary-toggle::before,
+        .glossary-toggle::after {
+            content: '';
+            position: absolute;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        
+        .glossary-toggle::before {
+            width: 12px;
+            height: 2px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .glossary-toggle::after {
+            width: 2px;
+            height: 12px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .glossary-module.active .glossary-toggle::after {
+            transform: translate(-50%, -50%) rotate(90deg);
+            opacity: 0;
+        }
+        
+        .glossary-module.active .glossary-toggle {
+            transform: rotate(180deg);
+        }
+        
+        .glossary-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+        
+        .glossary-module.active .glossary-content {
+            max-height: 5000px;
+        }
+        
+        .glossary-content-inner {
+            padding: 2rem;
+        }
+        
+        .concept-item {
+            margin-bottom: 2.5rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        
+        .concept-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        
+        .concept-title {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .concept-title::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        
+        .concept-definition {
+            background: rgba(255, 77, 46, 0.06);
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.25rem;
+            margin-bottom: 1rem;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .concept-definition strong {
+            color: var(--accent);
+        }
+        
+        .concept-content p {
+            margin-bottom: 0.75rem;
+        }
+        
+        .concept-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .concept-content li {
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        
+        .concept-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+        
+        .concept-table th,
+        .concept-table td {
+            padding: 0.75rem 1rem;
+            text-align: left;
+            border: 1px solid rgba(0,0,0,0.08);
+        }
+        
+        .concept-table th {
+            background: rgba(255, 77, 46, 0.08);
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+        }
+        
+        .concept-table td {
+            color: var(--text-secondary);
+        }
+        
+        .instructor-quote {
+            background: linear-gradient(135deg, rgba(255, 77, 46, 0.08), rgba(255, 140, 0, 0.06));
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        
+        .instructor-quote::before {
+            content: '"';
+            font-family: 'League Spartan', sans-serif;
+            font-size: 3rem;
+            color: var(--accent);
+            line-height: 0;
+            vertical-align: middle;
+            margin-right: 0.25rem;
+        }
+        
+        .instructor-quote strong {
+            display: block;
+            margin-top: 0.75rem;
+            font-style: normal;
+            font-size: 0.85rem;
+            color: var(--accent);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--bg-dark);
+            padding: 6vh 8vw;
+            color: var(--text-light);
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .footer-logo {
+            font-family: 'League Spartan', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-logo::before {
+            content: '';
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+        
+        .footer-tagline {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        
+        .footer-contact {
+            text-align: right;
+        }
+        
+        .footer-email {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--accent-light);
+            text-decoration: none;
+        }
+        
+        .footer-location {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        
+        .footer-bottom {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .footer-social {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .footer-social a {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-social a:hover {
+            color: var(--accent);
+        }
+        
+        /* Decorative Elements */
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .shape-1 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--yellow), var(--orange));
+            opacity: 0.08;
+            top: 10%;
+            right: -100px;
+            filter: blur(60px);
+        }
+        
+        .shape-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--accent);
+            opacity: 0.06;
+            bottom: 15%;
+            left: -50px;
+            filter: blur(40px);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                max-width: 45vw;
+            }
+            
+            .hero-image-container {
+                width: 38vw;
+            }
+            
+            .module-layout {
+                gap: 3vw;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+            }
+            
+            .hero {
+                min-height: auto;
+                padding: 12vh 6vw 8vh;
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .hero-content {
+                position: relative;
+                left: 0;
+                top: 0;
+                transform: none;
+                max-width: 100%;
+                order: 2;
+                margin-top: 2rem;
+            }
+            
+            .hero-image-container {
+                position: relative;
+                right: 0;
+                top: 0;
+                transform: none;
+                width: 100%;
+                height: 50vh;
+                order: 1;
+            }
+            
+            .hero-accent {
+                right: 5%;
+                width: 80%;
+                height: 90%;
+            }
+            
+            .instructor-chip {
+                position: relative;
+                left: 0;
+                bottom: 0;
+                order: 3;
+                margin-top: 2rem;
+                align-self: flex-start;
+            }
+            
+            .section-pinned {
+                height: auto;
+                min-height: 100vh;
+                padding: 8vh 6vw;
+            }
+            
+            .module-layout,
+            .module-layout.reverse {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem;
+                padding: 0;
+            }
+            
+            .module-visual {
+                height: 45vh;
+                width: 100%;
+            }
+            
+            .module-accent {
+                width: 85%;
+                height: 80%;
+            }
+            
+            .module-image {
+                width: 90%;
+                height: 90%;
+            }
+            
+            .module-content {
+                max-width: 100%;
+            }
+            
+            .timeline-line {
+                left: 20px;
+            }
+            
+            .week-card,
+            .week-card:nth-child(odd),
+            .week-card:nth-child(even) {
+                width: calc(100% - 60px);
+                margin-left: 50px;
+                margin-right: 0;
+            }
+            
+            .week-card::before,
+            .week-card:nth-child(odd)::before,
+            .week-card:nth-child(even)::before {
+                left: -40px;
+                right: auto;
+            }
+            
+            .glossary-module-header {
+                padding: 1.25rem 1.5rem;
+            }
+            
+            .glossary-module-header h3 {
+                font-size: 1rem;
+            }
+            
+            .glossary-content-inner {
+                padding: 1.5rem;
+            }
+            
+            .concept-table {
+                font-size: 0.8rem;
+            }
+            
+            .concept-table th,
+            .concept-table td {
+                padding: 0.5rem;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .footer-contact {
+                text-align: center;
+            }
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+        
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-dark);
+        }
+    </style>
+</head>
+<body>
+    <!-- Grain Overlay -->
+    <div class="grain-overlay"></div>
+    
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+        <a href="#" class="logo">I Plus One</a>
+        <div class="nav-links">
+            <a href="#module1">Syllabus</a>
+            <a href="#schedule">Schedule</a>
+            <a href="#assessment">Assessment</a>
+            <a href="#glossary">Glossary</a>
+        </div>
+        <button class="mobile-menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="section section-pinned hero" id="hero">
+        <div class="hero-content">
+            <p class="eyebrow hero-eyebrow">Teacher Training Syllabus</p>
+            <h1 class="hero-title">From Objectives<br>to Impact</h1>
+            <p class="hero-subtitle">A practical, module-based course in Communicative Language Teaching—built for real classrooms.</p>
+            <div class="hero-ctas">
+                <a href="#module1" class="btn btn-primary">Explore the syllabus</a>
+                <a href="#schedule" class="btn btn-secondary">See schedule</a>
+            </div>
+        </div>
+        
+        <div class="hero-image-container">
+            <div class="hero-accent"></div>
+            <div class="hero-image">
+                <img src="images/hero_teacher.jpg" alt="Teacher in classroom">
+            </div>
+        </div>
+        
+        <div class="instructor-chip">
+            <div class="instructor-avatar">AE</div>
+            <div>
+                <div class="instructor-text">Instructor</div>
+                <div class="instructor-name">Ahmed Essam</div>
+            </div>
+        </div>
+        
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+    </section>
+    
+    <!-- Module 1: Foundations -->
+    <section class="section section-pinned module module-paper" id="module1">
+        <div class="module-layout">
+            <div class="module-visual">
+                <div class="module-accent"></div>
+                <div class="module-image">
+                    <img src="images/module1_group.jpg" alt="Group collaboration">
+                </div>
+            </div>
+            <div class="module-content">
+                <p class="eyebrow module-eyebrow">Module 01</p>
+                <h2 class="module-title">Foundations of Communicative Language Teaching</h2>
+                <p class="module-description">Define CLT, explain communicative competence, and differentiate traditional vs. communicative approaches. Explore the Canale & Swain model, understand fluency vs. accuracy, and discover the characteristics of truly communicative tasks.</p>
+                <a href="#glossary-module1" class="link-arrow module-cta">Explore key concepts →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Module 2: SMART Objectives -->
+    <section class="section section-pinned module module-paper" id="module2">
+        <div class="module-layout reverse">
+            <div class="module-visual">
+                <div class="module-accent"></div>
+                <div class="module-image">
+                    <img src="images/module2_planning.jpg" alt="Lesson planning">
+                </div>
+            </div>
+            <div class="module-content">
+                <p class="eyebrow module-eyebrow">Module 02</p>
+                <h2 class="module-title">Lesson Planning & SMART Objectives</h2>
+                <p class="module-description">Write SMART objectives aligned with communicative outcomes. Develop performance-based learning objectives that guide every stage of the lesson. Master the art of distinguishing between lesson aims and observable objectives.</p>
+                <a href="#glossary-module2" class="link-arrow module-cta">See the planning framework →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Module 3: Designing Activities -->
+    <section class="section section-pinned module module-dark text-light" id="module3">
+        <div class="module-layout">
+            <div class="module-visual">
+                <div class="module-accent"></div>
+                <div class="module-image">
+                    <img src="images/module3_presenting.jpg" alt="Teacher presenting">
+                </div>
+            </div>
+            <div class="module-content">
+                <p class="eyebrow dark module-eyebrow">Module 03</p>
+                <h2 class="module-title">Designing Communicative Activities</h2>
+                <p class="module-description">Design information gap, opinion gap, and role-play tasks. Integrate real-world language use into classroom tasks. Learn task-based learning principles and apply the communicative task checklist to transform traditional drills.</p>
+                <a href="#glossary-module3" class="link-arrow module-cta">Explore task types →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Module 4: Teaching Language -->
+    <section class="section section-pinned module module-paper" id="module4">
+        <div class="module-layout reverse">
+            <div class="module-visual">
+                <div class="module-accent"></div>
+                <div class="module-image">
+                    <img src="images/module4_discussion.jpg" alt="Group discussion">
+                </div>
+            </div>
+            <div class="module-content">
+                <p class="eyebrow module-eyebrow">Module 04</p>
+                <h2 class="module-title">Teaching Language Communicatively</h2>
+                <p class="module-description">Teach grammar using guided discovery. Present vocabulary in meaningful contexts. Structure skills lessons with Pre/While/Post framework. Master the Meaning → Form → Pronunciation approach and understand inductive vs. deductive teaching.</p>
+                <a href="#glossary-module4" class="link-arrow module-cta">See the methodology →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Module 5: Classroom Interaction -->
+    <section class="section section-pinned module module-paper" id="module5">
+        <div class="module-layout">
+            <div class="module-visual">
+                <div class="module-accent"></div>
+                <div class="module-image">
+                    <img src="images/module5_classroom.jpg" alt="Classroom interaction">
+                </div>
+            </div>
+            <div class="module-content">
+                <p class="eyebrow module-eyebrow">Module 05</p>
+                <h2 class="module-title">Classroom Interaction & Teacher Role</h2>
+                <p class="module-description">Increase student talking time. Deliver clear instructions. Provide effective error correction without stopping the flow. Master pair and group work management, scaffolding techniques, and fluency vs. accuracy correction strategies.</p>
+                <a href="#glossary-module5" class="link-arrow module-cta">View interaction strategies →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Module 6: Materials -->
+    <section class="section section-pinned module module-paper" id="module6">
+        <div class="module-layout reverse">
+            <div class="module-visual">
+                <div class="module-accent"></div>
+                <div class="module-image">
+                    <img src="images/module6_materials.jpg" alt="Teaching materials">
+                </div>
+            </div>
+            <div class="module-content">
+                <p class="eyebrow module-eyebrow">Module 06</p>
+                <h2 class="module-title">Materials & Task Design</h2>
+                <p class="module-description">Adapt textbooks for communicative purposes. Create outcome-based tasks and develop authentic classroom materials. Learn to evaluate materials for real-world relevance and transform any content into engaging communicative activities.</p>
+                <a href="#glossary-module6" class="link-arrow module-cta">See adaptation examples →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Module 7: Assessment -->
+    <section class="section section-pinned module module-dark text-light" id="module7">
+        <div class="module-layout">
+            <div class="module-visual">
+                <div class="module-accent"></div>
+                <div class="module-image">
+                    <img src="images/module7_assessment.jpg" alt="Assessment">
+                </div>
+            </div>
+            <div class="module-content">
+                <p class="eyebrow dark module-eyebrow">Module 07</p>
+                <h2 class="module-title">Assessment in Communicative Language Teaching</h2>
+                <p class="module-description">Design communicative assessment tools. Develop speaking and writing rubrics that align with lesson objectives. Understand formative vs. summative assessment, performance-based evaluation, and peer/self-assessment strategies.</p>
+                <a href="#glossary-module7" class="link-arrow module-cta">View rubric templates →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Module 8: Reflection -->
+    <section class="section section-pinned module module-paper" id="module8">
+        <div class="module-layout reverse">
+            <div class="module-visual">
+                <div class="module-accent"></div>
+                <div class="module-image">
+                    <img src="images/module8_library.jpg" alt="Reflection">
+                </div>
+            </div>
+            <div class="module-content">
+                <p class="eyebrow module-eyebrow">Module 08</p>
+                <h2 class="module-title">Reflection & Professional Growth</h2>
+                <p class="module-description">Conduct reflective practice. Use observation tools effectively. Develop a professional growth action plan. Master reflective journals, peer observation checklists, and the fundamentals of action research in language teaching.</p>
+                <a href="#glossary-module8" class="link-arrow module-cta">Start your action plan →</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Schedule Section -->
+    <section class="section schedule" id="schedule">
+        <div class="schedule-header">
+            <p class="eyebrow">Course Schedule</p>
+            <h2>10-Week Roadmap</h2>
+            <p>Each week combines input, task-based practice, and peer feedback—so you leave with usable materials and a clear teaching stance.</p>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-line"></div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 01</div>
+                <div class="week-title">Introduction to CLT</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 02</div>
+                <div class="week-title">SMART Objectives & Lesson Planning</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 03</div>
+                <div class="week-title">Communicative Task Design</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 04</div>
+                <div class="week-title">Teaching Grammar Communicatively</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 05</div>
+                <div class="week-title">Teaching Vocabulary & Skills</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 06</div>
+                <div class="week-title">Classroom Interaction</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 07</div>
+                <div class="week-title">Materials Adaptation</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 08</div>
+                <div class="week-title">Communicative Assessment</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 09</div>
+                <div class="week-title">Microteaching</div>
+            </div>
+            
+            <div class="week-card">
+                <div class="week-number">Week 10</div>
+                <div class="week-title">Final Presentations & Reflection</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Assessment Section -->
+    <section class="section assessment" id="assessment">
+        <div class="assessment-header">
+            <p class="eyebrow dark">Assessment Overview</p>
+            <h2>How You'll Be Assessed</h2>
+            <p>A balanced approach combining practical application, reflective practice, and demonstrated teaching skills.</p>
+        </div>
+        
+        <div class="assessment-grid">
+            <div class="assessment-card">
+                <div class="assessment-weight">25%</div>
+                <div class="assessment-name">Communicative Lesson Plan</div>
+                <div class="assessment-desc">Design a complete lesson with SMART objectives and communicative tasks.</div>
+            </div>
+            
+            <div class="assessment-card">
+                <div class="assessment-weight">25%</div>
+                <div class="assessment-name">Microteaching Session</div>
+                <div class="assessment-desc">Deliver a 15-minute communicative lesson to peers with feedback.</div>
+            </div>
+            
+            <div class="assessment-card">
+                <div class="assessment-weight">20%</div>
+                <div class="assessment-name">Materials Design Task</div>
+                <div class="assessment-desc">Adapt textbook content into authentic communicative activities.</div>
+            </div>
+            
+            <div class="assessment-card">
+                <div class="assessment-weight">15%</div>
+                <div class="assessment-name">Assessment Tool Design</div>
+                <div class="assessment-desc">Create rubrics and evaluation tools for communicative competence.</div>
+            </div>
+            
+            <div class="assessment-card">
+                <div class="assessment-weight">15%</div>
+                <div class="assessment-name">Reflection Portfolio</div>
+                <div class="assessment-desc">Document your learning journey and professional growth plan.</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Glossary Section -->
+    <section class="section glossary" id="glossary">
+        <div class="glossary-header">
+            <p class="eyebrow">Conceptual Glossary</p>
+            <h2>Key Topics: Expanded Edition</h2>
+            <p>A comprehensive reference guide to the core concepts, frameworks, and methodologies covered in this Communicative Language Teaching course.</p>
+        </div>
+        
+        <div class="glossary-container">
+            <!-- Module 1 Glossary -->
+            <div class="glossary-module" id="glossary-module1">
+                <div class="glossary-module-header" onclick="toggleGlossary(this)">
+                    <div style="display: flex; align-items: center;">
+                        <span class="module-number">Module 01</span>
+                        <h3>Foundations of Communicative Language Teaching</h3>
+                    </div>
+                    <div class="glossary-toggle"></div>
+                </div>
+                <div class="glossary-content">
+                    <div class="glossary-content-inner">
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Communicative Competence (Canale & Swain Model)</h4>
+                            <div class="concept-definition">
+                                <strong>Definition:</strong> Communicative Competence is the internalized, tacit knowledge of language rules and the ability to use that knowledge for meaningful communication. It is what you know about language and its appropriate use.
+                            </div>
+                            <div class="concept-content">
+                                <p><strong>A. Grammatical Competence</strong> — Mastery of the linguistic code including vocabulary, word formation, sentence structure, pronunciation, spelling, and semantics. While traditional methods treated grammar as the goal, CLT treats grammatical competence as a resource for communication. It is necessary but not sufficient.</p>
+                                <p><strong>B. Sociolinguistic Competence</strong> — The ability to understand and produce language that is socially appropriate in a given context.</p>
+                                <table class="concept-table">
+                                    <tr><th>Dimension</th><th>Explanation</th><th>Example</th></tr>
+                                    <tr><td>Register</td><td>Formal vs. informal language</td><td>"I require assistance" vs. "I need help"</td></tr>
+                                    <tr><td>Politeness</td><td>Face-saving strategies</td><td>"Could you possibly…?" vs. "Open the door"</td></tr>
+                                    <tr><td>Cultural norms</td><td>What is taboo or preferred</td><td>Eye contact, personal space, greetings</td></tr>
+                                    <tr><td>Speech acts</td><td>Apologizing, requesting, refusing</td><td>Saying "I'm sorry" differently across cultures</td></tr>
+                                </table>
+                                <p><strong>C. Discourse Competence</strong> — The ability to connect sentences or utterances into a coherent, cohesive whole—whether spoken or written. Includes cohesion (surface-level connections like reference pronouns, conjunctions) and coherence (logical meaning, topic maintenance, turn-taking).</p>
+                                <p><strong>D. Strategic Competence</strong> — The ability to use verbal and non-verbal communication strategies to compensate for breakdowns or enhance the message.</p>
+                                <ul>
+                                    <li><strong>Achievement Strategies:</strong> Paraphrase, word coinage, circumlocution, code-switching, non-verbal communication</li>
+                                    <li><strong>Reduction Strategies:</strong> Message abandonment, topic avoidance, meaning replacement</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Competence vs. Performance (Chomsky, 1965)</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Competence</th><th>Performance</th></tr>
+                                    <tr><td>Tacit knowledge of the language system</td><td>Actual use of language in real situations</td></tr>
+                                    <tr><td>What you know (internal grammar)</td><td>What you do (speech/writing)</td></tr>
+                                    <tr><td>Ideal, error-free</td><td>Full of slips, false starts, hesitations</td></tr>
+                                    <tr><td>Stable</td><td>Variable (fatigue, anxiety, distraction affect it)</td></tr>
+                                </table>
+                                <p><strong>Hymes' Critique (1972):</strong> "There are rules of use without which the rules of grammar are useless." A child could generate infinite grammatically correct sentences but still be unable to communicate appropriately. Thus, Communicative Competence = Grammatical Competence + Sociolinguistic Competence.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Fluency vs. Accuracy</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Accuracy</th><th>Fluency</th></tr>
+                                    <tr><td>Focus on form</td><td>Focus on meaning</td></tr>
+                                    <tr><td>Error prevention/correction</td><td>Error tolerance</td></tr>
+                                    <tr><td>Controlled practice</td><td>Free production</td></tr>
+                                    <tr><td>Analytical, rule-based</td><td>Automatic, holistic</td></tr>
+                                </table>
+                                <p><strong>Interlanguage Perspective (Selinker, 1972):</strong> Learners develop an interlanguage—a unique, rule-governed linguistic system that evolves over time.</p>
+                                <p><strong>CLT Balance:</strong> Task stage = fluency focus (delayed correction); Language Focus stage = accuracy focus (immediate correction).</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Teacher and Learner Roles in CLT</h4>
+                            <div class="concept-content">
+                                <p><strong>Teacher Roles (Breen & Candlin, 1980):</strong></p>
+                                <ul>
+                                    <li><strong>Facilitator:</strong> Creates opportunities for communication, provides resources and scaffolds</li>
+                                    <li><strong>Needs Analyst:</strong> Conducts needs analysis, adapts syllabus based on learner goals</li>
+                                    <li><strong>Counselor/Consultant:</strong> Advises individuals during tasks, responds to student-initiated queries</li>
+                                    <li><strong>Co-communicator:</strong> Participates in discussions as an equal, shares opinions</li>
+                                    <li><strong>Classroom Manager:</strong> Organizes physical space, manages time and transitions</li>
+                                </ul>
+                                <p><strong>Learner Roles:</strong></p>
+                                <ul>
+                                    <li><strong>Negotiator of Meaning:</strong> Clarifies, confirms, paraphrases</li>
+                                    <li><strong>Collaborator:</strong> Co-constructs meaning with peers, provides peer feedback</li>
+                                    <li><strong>Risk-Taker:</strong> Attempts unfamiliar structures, guesses from context</li>
+                                    <li><strong>Self-Evaluator:</strong> Reflects on performance, identifies strengths/weaknesses</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Characteristics of Communicative Tasks</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Criterion</th><th>Description</th></tr>
+                                    <tr><td>Primary focus on meaning</td><td>Learners attend to message content</td></tr>
+                                    <tr><td>Gap principle</td><td>Information, opinion, or reasoning gap exists</td></tr>
+                                    <tr><td>Learner resources</td><td>Learners use own language repertoire</td></tr>
+                                    <tr><td>Outcome orientation</td><td>Clear non-linguistic goal (decision, list, map)</td></tr>
+                                    <tr><td>Authenticity</td><td>Resembles real-world communication</td></tr>
+                                    <tr><td>Interaction</td><td>Requires two-way exchange</td></tr>
+                                    <tr><td>Cognitive challenge</td><td>Requires thinking (reasoning, evaluating)</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 2 Glossary -->
+            <div class="glossary-module" id="glossary-module2">
+                <div class="glossary-module-header" onclick="toggleGlossary(this)">
+                    <div style="display: flex; align-items: center;">
+                        <span class="module-number">Module 02</span>
+                        <h3>Lesson Planning & SMART Objectives</h3>
+                    </div>
+                    <div class="glossary-toggle"></div>
+                </div>
+                <div class="glossary-content">
+                    <div class="glossary-content-inner">
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">SMART Framework</h4>
+                            <div class="concept-content">
+                                <p><strong>S - Specific:</strong> "Students will write 5 sentences describing what they did yesterday using regular -ed past forms." (Not: "Students will understand the past tense.")</p>
+                                <p><strong>M - Measurable:</strong> Evidence must be observable. Use Bloom's Taxonomy action verbs: identify, classify, role-play, justify, create.</p>
+                                <p><strong>A - Achievable:</strong> Realistic given time, level, resources. Zone of Proximal Development (ZPD): challenging but possible with support.</p>
+                                <p><strong>R - Relevant:</strong> Aligned with learner needs and course goals. For CLT: relevance = real-world applicability.</p>
+                                <p><strong>T - Time-bound:</strong> Achievable within one lesson or defined period. "By the end of the 50-minute session..."</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Observable Learning Outcomes</h4>
+                            <div class="concept-content">
+                                <p><strong>Non-observable (Cognitive):</strong> Know, understand, appreciate, learn, realize</p>
+                                <p><strong>Observable (Performance):</strong> List, describe, demonstrate, create, compare, negotiate</p>
+                                <div class="concept-definition">
+                                    <strong>CLT Application:</strong> ❌ "Students will understand how to apologize." ✅ "Students will role-play a scenario apologizing for being late, using at least two apology strategies (excuse, offer to fix)."
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Lesson Planning Framework for CLT</h4>
+                            <div class="concept-content">
+                                <p><strong>Traditional PPP:</strong> Present → Practice → Produce</p>
+                                <p><strong>CLT Task-Based Learning (Willis, 1996):</strong></p>
+                                <ul>
+                                    <li><strong>Pre-task:</strong> Introduce topic, activate language, model task</li>
+                                    <li><strong>Task Cycle:</strong>
+                                        <ul>
+                                            <li>Task: Students do task in pairs/groups (fluency)</li>
+                                            <li>Planning: Prepare oral/written report</li>
+                                            <li>Report: Present findings to class</li>
+                                        </ul>
+                                    </li>
+                                    <li><strong>Language Focus:</strong>
+                                        <ul>
+                                            <li>Analysis: Examine language features from task</li>
+                                            <li>Practice: Pronunciation, form drilling (accuracy)</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 3 Glossary -->
+            <div class="glossary-module" id="glossary-module3">
+                <div class="glossary-module-header" onclick="toggleGlossary(this)">
+                    <div style="display: flex; align-items: center;">
+                        <span class="module-number">Module 03</span>
+                        <h3>Designing Communicative Activities</h3>
+                    </div>
+                    <div class="glossary-toggle"></div>
+                </div>
+                <div class="glossary-content">
+                    <div class="glossary-content-inner">
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Task-Based Learning (TBL) Principles</h4>
+                            <div class="concept-content">
+                                <p><strong>Principle 1: Holistic Language Use</strong> — Language is acquired whole-to-part, not part-to-whole. Learners encounter complete texts/discourse, not isolated sentences.</p>
+                                <p><strong>Principle 2: Intrinsic Motivation</strong> — Task success is inherently satisfying. Example: Successfully booking a hotel room in English is motivating in itself.</p>
+                                <p><strong>Principle 3: Learnability vs. Acquisition</strong> — Teaching a rule does not guarantee acquisition. Acquisition requires processing meaning first.</p>
+                                <p><strong>Principle 4: Form-Meaning Mapping</strong> — Learners need to see how grammatical choices affect meaning. Why choose passive voice? ("The window was broken" vs. "John broke the window")</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Information Gap Activities</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Type</th><th>Description</th><th>Example</th></tr>
+                                    <tr><td>One-way gap</td><td>A has info; B doesn't</td><td>A describes picture; B draws</td></tr>
+                                    <tr><td>Two-way gap</td><td>A has some info; B has complementary info</td><td>Spot-the-difference</td></tr>
+                                    <tr><td>Opinion gap</td><td>No right/wrong; personal preference</td><td>"Should schools require uniforms?"</td></tr>
+                                    <tr><td>Reasoning gap</td><td>Derive new info from given facts</td><td>Detective solves crime</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Problem-Solving Tasks</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Task Type</th><th>Cognitive Demand</th><th>Example</th></tr>
+                                    <tr><td>Ranking</td><td>Low</td><td>Rank weekend activities</td></tr>
+                                    <tr><td>Sequencing</td><td>Medium</td><td>Put story pictures in order</td></tr>
+                                    <tr><td>Prioritizing</td><td>Medium-High</td><td>Survival on a desert island</td></tr>
+                                    <tr><td>Case study</td><td>High</td><td>Solve a business problem</td></tr>
+                                    <tr><td>Dilemma</td><td>High</td><td>Ethical choices</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Communicative Task Checklist</h4>
+                            <div class="concept-content">
+                                <p><strong>Rate 0-3:</strong></p>
+                                <ol>
+                                    <li>Do students speak more than the teacher?</li>
+                                    <li>Is there a genuine transfer of information?</li>
+                                    <li>Is the outcome a completed task, not just language practice?</li>
+                                    <li>Do students work in pairs/groups?</li>
+                                    <li>Is the language use unscripted?</li>
+                                    <li>Does the task resemble real life?</li>
+                                </ol>
+                                <div class="concept-definition">
+                                    <strong>Score &lt;12 = Not fully communicative. Adapt it.</strong>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 4 Glossary -->
+            <div class="glossary-module" id="glossary-module4">
+                <div class="glossary-module-header" onclick="toggleGlossary(this)">
+                    <div style="display: flex; align-items: center;">
+                        <span class="module-number">Module 04</span>
+                        <h3>Teaching Language Communicatively</h3>
+                    </div>
+                    <div class="glossary-toggle"></div>
+                </div>
+                <div class="glossary-content">
+                    <div class="glossary-content-inner">
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Meaning → Form → Pronunciation</h4>
+                            <div class="concept-content">
+                                <p><strong>Stage 1: Meaning (Contextualize)</strong> — Present target language in a text, dialogue, or video. Check comprehension of message, not form. Example: Students read a restaurant review. Teacher asks: "Did they like the food? Why?"</p>
+                                <p><strong>Stage 2: Form (Notice)</strong> — Students search text for specific language. Example: "Underline how the writer expresses opinions. Circle adjectives used." Learners hypothesize rules; teacher confirms/clarifies.</p>
+                                <p><strong>Stage 3: Pronunciation (Personalize)</strong> — Drill in meaningful phrases, not isolation. Connect to learners' own experiences. Example: Students say their own restaurant opinions with correct intonation.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Inductive vs. Deductive Teaching</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Aspect</th><th>Deductive</th><th>Inductive</th></tr>
+                                    <tr><td>Direction</td><td>Rule → Examples</td><td>Examples → Rule</td></tr>
+                                    <tr><td>Cognitive load</td><td>Low (receive)</td><td>High (discover)</td></tr>
+                                    <tr><td>Retention</td><td>Lower</td><td>Higher</td></tr>
+                                    <tr><td>Time efficiency</td><td>Faster</td><td>Slower</td></tr>
+                                    <tr><td>Learner autonomy</td><td>Lower</td><td>Higher</td></tr>
+                                </table>
+                                <p><strong>CLT Stance:</strong> Inductive is preferred for adults and intermediate+ learners. Deductive may be used for complex, exception-heavy rules.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Pre/While/Post Framework for Skills</h4>
+                            <div class="concept-content">
+                                <p><strong>PRE (Activate):</strong> Predict from title/images, brainstorm vocabulary, set purpose: "Read to find out..."</p>
+                                <p><strong>WHILE (Navigate):</strong></p>
+                                <ul>
+                                    <li><strong>Gist:</strong> First listen: general idea</li>
+                                    <li><strong>Scan:</strong> Find specific details</li>
+                                    <li><strong>Intensive:</strong> Infer meaning, analyze language</li>
+                                </ul>
+                                <p><strong>POST (Transfer):</strong> Discussion, debate, creative writing, role-play</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Lexical Chunks and Collocations</h4>
+                            <div class="concept-content">
+                                <p><strong>The Lexical Approach (Michael Lewis, 1993):</strong> "Language consists of grammaticalized lexis, not lexicalized grammar."</p>
+                                <table class="concept-table">
+                                    <tr><th>Type</th><th>Definition</th><th>Example</th></tr>
+                                    <tr><td>Polywords</td><td>Fixed phrases</td><td>"by the way", "in the end"</td></tr>
+                                    <tr><td>Collocations</td><td>Words that co-occur</td><td>"make a decision", "heavy rain"</td></tr>
+                                    <tr><td>Institutionalized utterances</td><td>Entire sentences</td><td>"There's a first time for everything"</td></tr>
+                                    <tr><td>Sentence frames</td><td>Discourse organizers</td><td>"Firstly... Secondly... Finally..."</td></tr>
+                                </table>
+                                <p><strong>CLT Implication:</strong> Teach chunks, not just single words. Fluency comes from accessing prefabricated language, not generating every sentence from scratch.</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 5 Glossary -->
+            <div class="glossary-module" id="glossary-module5">
+                <div class="glossary-module-header" onclick="toggleGlossary(this)">
+                    <div style="display: flex; align-items: center;">
+                        <span class="module-number">Module 05</span>
+                        <h3>Classroom Interaction & Teacher Role</h3>
+                    </div>
+                    <div class="glossary-toggle"></div>
+                </div>
+                <div class="glossary-content">
+                    <div class="glossary-content-inner">
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Teacher Talking Time (TTT) vs. Student Talking Time (STT)</h4>
+                            <div class="concept-content">
+                                <p><strong>Typical TTT in traditional class:</strong> 70-80%</p>
+                                <p><strong>Target TTT in CLT:</strong> 20-30%</p>
+                                <p><strong>Where TTT Hides:</strong> Giving lengthy instructions, echoing student answers ("Good. John said..."), asking display questions (known answers), lecturing grammar rules</p>
+                                <p><strong>STT Maximizers:</strong> Pair/group work, open-ended questions, communication games, student presentations</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Pair and Group Work Management</h4>
+                            <div class="concept-content">
+                                <p><strong>Instruction-Checking Questions (ICQs):</strong> Instead of "Do you understand?" ask:</p>
+                                <ul>
+                                    <li>"In this task, do you write or speak?"</li>
+                                    <li>"How many minutes do you have?"</li>
+                                    <li>"Who goes first?"</li>
+                                </ul>
+                                <p><strong>Group Roles:</strong></p>
+                                <ul>
+                                    <li><strong>Facilitator:</strong> Keeps group on task</li>
+                                    <li><strong>Spokesperson:</strong> Reports to class</li>
+                                    <li><strong>Timekeeper:</strong> Monitors time</li>
+                                    <li><strong>Secretary:</strong> Writes notes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Scaffolding Techniques</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Scaffold Type</th><th>Description</th><th>Example</th></tr>
+                                    <tr><td>Modeling</td><td>Demonstrate task</td><td>Teacher does task with student</td></tr>
+                                    <tr><td>Bridging</td><td>Connect to prior knowledge</td><td>"Remember when we ordered coffee..."</td></tr>
+                                    <tr><td>Contextualizing</td><td>Provide setting</td><td>Show video of restaurant</td></tr>
+                                    <tr><td>Schema building</td><td>Organize knowledge</td><td>Mind map</td></tr>
+                                    <tr><td>Re-presenting</td><td>Use multiple formats</td><td>Text + image + audio</td></tr>
+                                    <tr><td>Metacognitive</td><td>Think aloud</td><td>"First, I scan for prices..."</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Fluency vs. Accuracy Correction Strategies</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Strategy</th><th>Timing</th><th>Focus</th><th>Example</th></tr>
+                                    <tr><td>Recast</td><td>Immediate, subtle</td><td>Meaning</td><td>S: "He go to school." T: "Yes, he *goes* to school every day."</td></tr>
+                                    <tr><td>Clarification request</td><td>Immediate</td><td>Meaning</td><td>"Sorry, could you repeat that?"</td></tr>
+                                    <tr><td>Metalinguistic feedback</td><td>Delayed</td><td>Form</td><td>"Remember, third person singular takes -s."</td></tr>
+                                    <tr><td>Elicitation</td><td>Immediate</td><td>Form</td><td>"He...?" (pause for student to self-correct)</td></tr>
+                                    <tr><td>Delayed correction</td><td>Post-task</td><td>Both</td><td>Teacher writes errors on board; class corrects together</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 6 Glossary -->
+            <div class="glossary-module" id="glossary-module6">
+                <div class="glossary-module-header" onclick="toggleGlossary(this)">
+                    <div style="display: flex; align-items: center;">
+                        <span class="module-number">Module 06</span>
+                        <h3>Materials & Task Design</h3>
+                    </div>
+                    <div class="glossary-toggle"></div>
+                </div>
+                <div class="glossary-content">
+                    <div class="glossary-content-inner">
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Authentic Materials</h4>
+                            <div class="concept-content">
+                                <p><strong>Categories:</strong></p>
+                                <ul>
+                                    <li><strong>Print:</strong> Menus, brochures, receipts, schedules</li>
+                                    <li><strong>Audio:</strong> Podcasts, radio, voicemail, songs</li>
+                                    <li><strong>Audio-visual:</strong> News clips, YouTube, films</li>
+                                    <li><strong>Digital:</strong> Websites, social media, emails</li>
+                                </ul>
+                                <p><strong>Why Authentic?</strong></p>
+                                <ol>
+                                    <li>Exposure to real discourse features (hesitations, false starts)</li>
+                                    <li>Cultural content embedded</li>
+                                    <li>Motivational (adult learners value real texts)</li>
+                                    <li>Preparation for independent real-world navigation</li>
+                                </ol>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Task Outcomes and Real-World Relevance</h4>
+                            <div class="concept-content">
+                                <p><strong>Non-communicative outcome:</strong> "Complete the worksheet." / "Answer the questions."</p>
+                                <p><strong>Communicative outcome:</strong> "Choose a restaurant for the team dinner based on the reviews." / "Decide which candidate to hire."</p>
+                                <p><strong>Real-World Transfer:</strong> The task in class should mirror a task outside class.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Materials Evaluation and Adaptation</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Problem</th><th>CLT Adaptation</th></tr>
+                                    <tr><td>Textbook has drills only</td><td>Add an information gap stage</td></tr>
+                                    <tr><td>No pair work</td><td>Insert "Discuss with partner" prompts</td></tr>
+                                    <tr><td>Fake texts</td><td>Replace with authentic text, keep same topic</td></tr>
+                                    <tr><td>Passive reception</td><td>Add pre-reading prediction task</td></tr>
+                                    <tr><td>No personalization</td><td>Add "What about you?" section</td></tr>
+                                </table>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 7 Glossary -->
+            <div class="glossary-module" id="glossary-module7">
+                <div class="glossary-module-header" onclick="toggleGlossary(this)">
+                    <div style="display: flex; align-items: center;">
+                        <span class="module-number">Module 07</span>
+                        <h3>Assessment in Communicative Language Teaching</h3>
+                    </div>
+                    <div class="glossary-toggle"></div>
+                </div>
+                <div class="glossary-content">
+                    <div class="glossary-content-inner">
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Formative vs. Summative Assessment</h4>
+                            <div class="concept-content">
+                                <table class="concept-table">
+                                    <tr><th>Dimension</th><th>Formative</th><th>Summative</th></tr>
+                                    <tr><td>Timing</td><td>During learning</td><td>End of unit/course</td></tr>
+                                    <tr><td>Purpose</td><td>Improve, adjust, support</td><td>Measure, grade, certify</td></tr>
+                                    <tr><td>Stakes</td><td>Low</td><td>High</td></tr>
+                                    <tr><td>Feedback</td><td>Descriptive, immediate</td><td>Judgmental, delayed</td></tr>
+                                    <tr><td>Example</td><td>Observation, peer feedback, drafts</td><td>Final exam, final presentation</td></tr>
+                                </table>
+                                <p><strong>CLT Emphasis:</strong> Strong formative assessment culture. Students need feedback on communicative attempts, not just final grades.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Performance-Based Assessment</h4>
+                            <div class="concept-content">
+                                <p><strong>Definition:</strong> Assessment requiring demonstration of knowledge through real-world tasks.</p>
+                                <p><strong>Characteristics:</strong></p>
+                                <ul>
+                                    <li>Open-ended</li>
+                                    <li>Process and product evaluated</li>
+                                    <li>Criteria shared in advance</li>
+                                    <li>Self/peer involvement</li>
+                                </ul>
+                                <p><strong>CLT Examples:</strong> Conduct a job interview, leave a voicemail message, write a complaint email, present a proposal</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Can-Do Statements</h4>
+                            <div class="concept-content">
+                                <p><strong>Structure:</strong> "I can [action] in [context] with [quality]."</p>
+                                <table class="concept-table">
+                                    <tr><th>Level</th><th>Example</th></tr>
+                                    <tr><td>A1</td><td>"I can order a drink at a café."</td></tr>
+                                    <tr><td>B1</td><td>"I can describe a travel experience in detail."</td></tr>
+                                    <tr><td>C1</td><td>"I can argue a complex position in a debate."</td></tr>
+                                </table>
+                                <p><strong>Assessment Use:</strong> Learners self-assess against can-do lists; teacher observes and confirms.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Peer and Self-Assessment Strategies</h4>
+                            <div class="concept-content">
+                                <p><strong>Peer Assessment Structures:</strong></p>
+                                <ul>
+                                    <li><strong>Two stars and a wish:</strong> Two positives, one suggestion</li>
+                                    <li><strong>Gallery walk:</strong> Post work, peers leave sticky note feedback</li>
+                                    <li><strong>Checklist:</strong> Criteria-based observation during presentations</li>
+                                </ul>
+                                <p><strong>Self-Assessment Tools:</strong></p>
+                                <ul>
+                                    <li>Exit tickets: "Today I learned... I still need..."</li>
+                                    <li>Learning logs: Weekly reflection entries</li>
+                                    <li>Portfolio reflections: Curated work with commentary</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Module 8 Glossary -->
+            <div class="glossary-module" id="glossary-module8">
+                <div class="glossary-module-header" onclick="toggleGlossary(this)">
+                    <div style="display: flex; align-items: center;">
+                        <span class="module-number">Module 08</span>
+                        <h3>Reflection & Professional Growth</h3>
+                    </div>
+                    <div class="glossary-toggle"></div>
+                </div>
+                <div class="glossary-content">
+                    <div class="glossary-content-inner">
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Reflective Journals</h4>
+                            <div class="concept-content">
+                                <p><strong>Gibbs' Reflective Cycle (1988):</strong></p>
+                                <ol>
+                                    <li><strong>Description:</strong> What happened?</li>
+                                    <li><strong>Feelings:</strong> What were you thinking/feeling?</li>
+                                    <li><strong>Evaluation:</strong> What was good/bad?</li>
+                                    <li><strong>Analysis:</strong> What sense can you make of it?</li>
+                                    <li><strong>Conclusion:</strong> What else could you have done?</li>
+                                    <li><strong>Action Plan:</strong> If it arises again, what will you do?</li>
+                                </ol>
+                                <p><strong>CLT Focus Questions:</strong></p>
+                                <ul>
+                                    <li>Did students communicate genuinely or just "do the activity"?</li>
+                                    <li>Who talked more—me or them?</li>
+                                    <li>Did I correct errors at the right time?</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Peer Observation Checklists</h4>
+                            <div class="concept-content">
+                                <p><strong>Sample CLT Observation Criteria:</strong></p>
+                                <ul>
+                                    <li>Teacher talk ≤ 30% of time?</li>
+                                    <li>Instructions: Clear? ICQs used?</li>
+                                    <li>Task: Is there a gap? Outcome?</li>
+                                    <li>Error correction: Appropriate timing?</li>
+                                    <li>Student interaction: Pair/group effective?</li>
+                                </ul>
+                                <p><strong>Non-judgmental language:</strong></p>
+                                <ul>
+                                    <li>"I noticed..." (not "You failed to...")</li>
+                                    <li>"What was your intention when...?"</li>
+                                    <li>"Have you considered...?"</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Action Planning</h4>
+                            <div class="concept-content">
+                                <p><strong>SMART for Teachers:</strong></p>
+                                <ul>
+                                    <li><strong>S:</strong> "I will reduce TTT by using more pair work."</li>
+                                    <li><strong>M:</strong> "I will time myself in 3 lessons; target &lt;15 min TTT."</li>
+                                    <li><strong>A:</strong> "I will start with one pair activity per lesson."</li>
+                                    <li><strong>R:</strong> "My students need more speaking time."</li>
+                                    <li><strong>T:</strong> "By the end of this month."</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="concept-item">
+                            <h4 class="concept-title">Introduction to Action Research</h4>
+                            <div class="concept-content">
+                                <p><strong>Cycle:</strong></p>
+                                <ol>
+                                    <li><strong>Identify problem:</strong> "My intermediate students avoid speaking."</li>
+                                    <li><strong>Plan intervention:</strong> "I will implement role-plays for 4 weeks."</li>
+                                    <li><strong>Act/Observe:</strong> Video record lessons; student surveys.</li>
+                                    <li><strong>Reflect:</strong> Analyze data; what changed?</li>
+                                    <li><strong>Revise:</strong> Adjust approach; cycle continues.</li>
+                                </ol>
+                                <p><strong>CLT Action Research Examples:</strong></p>
+                                <ul>
+                                    <li>Does pre-task planning time improve fluency?</li>
+                                    <li>Do peer checklists improve student self-correction?</li>
+                                    <li>Are information gap tasks more engaging than textbook dialogues?</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Final Synthesis -->
+            <div class="glossary-module">
+                <div class="glossary-module-header" onclick="toggleGlossary(this)">
+                    <div style="display: flex; align-items: center;">
+                        <span class="module-number">Final</span>
+                        <h3>From Competence to Performance to Mastery</h3>
+                    </div>
+                    <div class="glossary-toggle"></div>
+                </div>
+                <div class="glossary-content">
+                    <div class="glossary-content-inner">
+                        <table class="concept-table">
+                            <tr><th>Stage</th><th>Focus</th><th>Key Question</th></tr>
+                            <tr><td>Competence</td><td>Knowledge of language system</td><td>What do learners know?</td></tr>
+                            <tr><td>Performance</td><td>Actual use in real time</td><td>What do learners do?</td></tr>
+                            <tr><td>Reflection</td><td>Analysis of performance</td><td>Why did that happen?</td></tr>
+                            <tr><td>Mastery</td><td>Automatic, appropriate use</td><td>Can they do it again?</td></tr>
+                        </table>
+                        
+                        <div class="instructor-quote">
+                            CLT is not anarchy. It is not 'just talk.' It is the most principled, evidence-based approach we have. It respects the learner. It respects the complexity of language. And it respects the teacher—not as a technician, but as a reflective professional. These concepts are your toolkit. Use them, question them, adapt them. That is communicative teaching.
+                            <strong>— Ahmed Essam</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="footer-logo">I Plus One</div>
+                <div class="footer-tagline">Practical training for communicative classrooms.</div>
+            </div>
+            
+            <div class="footer-contact">
+                <a href="mailto:hello@iplusone.training" class="footer-email">hello@iplusone.training</a>
+                <div class="footer-location">Cairo / Online</div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-copyright">© I Plus One. All rights reserved.</div>
+                <div class="footer-social">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        // Register ScrollTrigger
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // Navigation scroll effect
+        const nav = document.getElementById('nav');
+        let lastScroll = 0;
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            
+            // Check for dark sections
+            const darkSections = document.querySelectorAll('.module-dark');
+            let inDarkSection = false;
+            
+            darkSections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top < 80 && rect.bottom > 80) {
+                    inDarkSection = true;
+                }
+            });
+            
+            if (inDarkSection) {
+                nav.classList.add('dark');
+            } else {
+                nav.classList.remove('dark');
+            }
+            
+            lastScroll = currentScroll;
+        }, { passive: true });
+        
+        // Glossary toggle function
+        function toggleGlossary(header) {
+            const module = header.parentElement;
+            module.classList.toggle('active');
+        }
+        
+        // Hero entrance animation (auto-play on load)
+        const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+        
+        heroTl
+            .from('.hero-accent', {
+                x: '22vw',
+                y: '6vh',
+                rotation: 6,
+                opacity: 0,
+                duration: 1.2
+            })
+            .from('.hero-image', {
+                x: '18vw',
+                scale: 1.08,
+                opacity: 0,
+                duration: 1.1
+            }, '-=1')
+            .from('.hero-eyebrow', {
+                y: 20,
+                opacity: 0,
+                duration: 0.6
+            }, '-=0.6')
+            .from('.hero-title', {
+                y: 40,
+                opacity: 0,
+                duration: 0.8
+            }, '-=0.4')
+            .from('.hero-subtitle', {
+                y: 20,
+                opacity: 0,
+                duration: 0.6
+            }, '-=0.4')
+            .from('.hero-ctas', {
+                y: 20,
+                opacity: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .from('.instructor-chip', {
+                y: 20,
+                opacity: 0,
+                duration: 0.6
+            }, '-=0.3')
+            .from('.floating-shape', {
+                scale: 0,
+                opacity: 0,
+                duration: 1,
+                stagger: 0.2
+            }, '-=0.8');
+        
+        // Hero scroll exit animation
+        ScrollTrigger.create({
+            trigger: '#hero',
+            start: 'top top',
+            end: '+=120%',
+            pin: true,
+            scrub: 0.6,
+            onLeaveBack: () => {
+                gsap.set('.hero-content > *', { x: 0, opacity: 1 });
+                gsap.set('.hero-image-container', { x: 0, opacity: 1 });
+                gsap.set('.hero-accent', { x: 0, opacity: 1 });
+                gsap.set('.instructor-chip', { x: 0, opacity: 1 });
+            }
+        });
+        
+        gsap.to('.hero-content', {
+            x: '-18vw',
+            opacity: 0,
+            ease: 'power2.in',
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: '+=120%',
+                scrub: 0.6
+            }
+        });
+        
+        gsap.to('.hero-image-container', {
+            x: '22vw',
+            opacity: 0,
+            ease: 'power2.in',
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: '+=120%',
+                scrub: 0.6
+            }
+        });
+        
+        gsap.to('.hero-accent', {
+            x: '26vw',
+            rotation: 6,
+            opacity: 0,
+            ease: 'power2.in',
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: '+=120%',
+                scrub: 0.6
+            }
+        });
+        
+        gsap.to('.instructor-chip', {
+            y: 30,
+            opacity: 0,
+            ease: 'power2.in',
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: '+=120%',
+                scrub: 0.6
+            }
+        });
+        
+        // Module animations
+        const modules = document.querySelectorAll('.module');
+        
+        modules.forEach((module, index) => {
+            const layout = module.querySelector('.module-layout');
+            const isReverse = layout.classList.contains('reverse');
+            const visual = module.querySelector('.module-visual');
+            const accent = module.querySelector('.module-accent');
+            const image = module.querySelector('.module-image');
+            const content = module.querySelector('.module-content');
+            const eyebrow = module.querySelector('.module-eyebrow');
+            const title = module.querySelector('.module-title');
+            const desc = module.querySelector('.module-description');
+            const cta = module.querySelector('.module-cta');
+            
+            gsap.set([eyebrow, title, desc, cta], { opacity: 0, y: 30 });
+            gsap.set(image, { opacity: 0, x: isReverse ? '60vw' : '-60vw', rotation: isReverse ? 3 : -3 });
+            gsap.set(accent, { opacity: 0, x: isReverse ? '30vw' : '-30vw', y: '10vh', rotation: isReverse ? 8 : -8 });
+            gsap.set(content, { opacity: 0, x: isReverse ? '-40vw' : '40vw' });
+            
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: module,
+                    start: 'top 80%',
+                    end: 'top 30%',
+                    scrub: 0.6
+                }
+            });
+            
+            tl.to(image, {
+                opacity: 1,
+                x: 0,
+                rotation: 0,
+                duration: 0.4
+            })
+            .to(accent, {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                rotation: isReverse ? -2 : 2,
+                duration: 0.35
+            }, '-=0.3')
+            .to(content, {
+                opacity: 1,
+                x: 0,
+                duration: 0.35
+            }, '-=0.25')
+            .to([eyebrow, title, desc, cta], {
+                opacity: 1,
+                y: 0,
+                stagger: 0.08,
+                duration: 0.3
+            }, '-=0.2');
+        });
+        
+        // Schedule timeline animation
+        const weekCards = document.querySelectorAll('.week-card');
+        const timelineLine = document.querySelector('.timeline-line');
+        
+        gsap.from(timelineLine, {
+            scaleY: 0,
+            transformOrigin: 'top center',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#schedule',
+                start: 'top 70%',
+                end: 'bottom 70%',
+                scrub: 0.6
+            }
+        });
+        
+        weekCards.forEach((card, index) => {
+            gsap.from(card, {
+                y: 50,
+                opacity: 0,
+                duration: 0.6,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    end: 'top 60%',
+                    scrub: 0.6
+                }
+            });
+        });
+        
+        // Assessment cards animation
+        const assessmentCards = document.querySelectorAll('.assessment-card');
+        
+        assessmentCards.forEach((card, index) => {
+            gsap.from(card, {
+                y: 40,
+                opacity: 0,
+                duration: 0.5,
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+        
+        // Glossary section animation
+        gsap.from('.glossary-header', {
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            scrollTrigger: {
+                trigger: '#glossary',
+                start: 'top 70%',
+                toggleActions: 'play none none reverse'
+            }
+        });
+        
+        const glossaryModules = document.querySelectorAll('.glossary-module');
+        glossaryModules.forEach((mod, index) => {
+            gsap.from(mod, {
+                y: 40,
+                opacity: 0,
+                duration: 0.5,
+                delay: index * 0.1,
+                scrollTrigger: {
+                    trigger: mod,
+                    start: 'top 90%',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Parallax effect for floating shapes
+        gsap.to('.shape-1', {
+            y: '-10%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 0.6
+            }
+        });
+        
+        gsap.to('.shape-2', {
+            y: '10%',
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '#hero',
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 0.6
+            }
+        });
+        
+        // Refresh ScrollTrigger on resize
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                ScrollTrigger.refresh();
+            }, 250);
+        });
+    </script>
+</body>
+</html>
